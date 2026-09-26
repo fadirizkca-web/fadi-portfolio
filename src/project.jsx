@@ -1,7 +1,7 @@
 const projects = [
   {
     title: 'Database Development Project',
-    image: '/src/assets/project-database.png',
+    image: {databaseProject},
     role: 'Database Developer',
     date: 'May 2026 – September 2026',
     description:
@@ -12,7 +12,7 @@ const projects = [
 
   {
     title: 'Linux/Unix Administration & Command-Line Project',
-    image: '/src/assets/project-linux.png',
+    image: {linuxProject},
     role: 'Linux/Unix Project Team Member',
     date: 'May 2026 – September 2026',
     description:
@@ -23,7 +23,7 @@ const projects = [
 
   {
     title: 'MatchMyHome Software Requirements Specification',
-    image: '/src/assets/project-requirements.png',
+    image: {requirementsProject},
     role: 'Requirements Analyst / Team Member',
     date: 'May 2026 – September 2026',
     description:
@@ -34,7 +34,7 @@ const projects = [
 
   {
     title: 'Web Design — HTML, CSS & JavaScript',
-    image: '/src/assets/project-web.png',
+    image: {webProject},
     role: 'Web Developer',
     date: 'January 2026 – September 2026',
     description:
