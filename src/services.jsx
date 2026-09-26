@@ -1,44 +1,49 @@
+import databaseProject from './assets/project-database.png';
+import linuxProject from './assets/project-linux.png';
+import requirementsProject from './assets/project-requirements.png';
+import webProject from './assets/project-web.png';
+
 const services = [
   {
     title: 'Web Development',
     description:
       'Development and maintenance of responsive websites using HTML, CSS, JavaScript and WordPress.',
-    image: '/src/assets/project-web.png'
+    image: webProject
   },
 
   {
     title: 'Linux & Technical Support',
     description:
       'Technical troubleshooting, log analysis, Linux command-line processing and technical support.',
-    image: '/src/assets/project-linux.png'
+    image: linuxProject
   },
 
   {
     title: 'Data & Automation',
     description:
       'Automation of repetitive technical tasks using Bash and Python and extraction of information into structured formats.',
-    image: '/src/assets/project-database.png'
+    image: databaseProject
   },
 
   {
     title: 'Oracle SQL & Database Development',
     description:
       'Database table design, constraints and SQL queries for retrieving, filtering, grouping and organizing data.',
-    image: '/src/assets/project-database.png'
+    image: databaseProject
   },
 
   {
     title: 'Software Requirements Analysis',
     description:
       'Requirements gathering and documentation, including functional requirements, non-functional requirements and UML diagrams.',
-    image: '/src/assets/project-requirements.png'
+    image: requirementsProject
   },
 
   {
     title: 'Website Maintenance',
     description:
       'Website troubleshooting, content updates, layout improvements and usability-focused changes.',
-    image: '/src/assets/project-web.png'
+    image: webProject
   }
 ];
 

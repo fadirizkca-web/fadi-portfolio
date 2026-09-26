@@ -1,7 +1,12 @@
+import databaseProject from './assets/project-database.png';
+import linuxProject from './assets/project-linux.png';
+import requirementsProject from './assets/project-requirements.png';
+import webProject from './assets/project-web.png';
+
 const projects = [
   {
     title: 'Database Development Project',
-    image: {databaseProject},
+    image: databaseProject,
     role: 'Database Developer',
     date: 'May 2026 – September 2026',
     description:
@@ -12,7 +17,7 @@ const projects = [
 
   {
     title: 'Linux/Unix Administration & Command-Line Project',
-    image: {linuxProject},
+    image: linuxProject,
     role: 'Linux/Unix Project Team Member',
     date: 'May 2026 – September 2026',
     description:
@@ -23,7 +28,7 @@ const projects = [
 
   {
     title: 'MatchMyHome Software Requirements Specification',
-    image: {requirementsProject},
+    image: requirementsProject,
     role: 'Requirements Analyst / Team Member',
     date: 'May 2026 – September 2026',
     description:
@@ -34,7 +39,7 @@ const projects = [
 
   {
     title: 'Web Design — HTML, CSS & JavaScript',
-    image: {webProject},
+    image: webProject,
     role: 'Web Developer',
     date: 'January 2026 – September 2026',
     description:

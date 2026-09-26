@@ -1,3 +1,5 @@
+import profileImage from './assets/profile.jpg';
+
 function About() {
 
   return (
@@ -32,7 +34,7 @@ function About() {
 
             <img
               className="profile-image"
-              src="/src/assets/profile.jpg"
+              src={profileImage}
               alt="Portrait of Fadi Rizk"
             />
 
