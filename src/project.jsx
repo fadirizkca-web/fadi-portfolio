@@ -3,6 +3,8 @@ import linuxProject from './assets/project-linux.png';
 import requirementsProject from './assets/project-requirements.png';
 import webProject from './assets/project-web.png';
 
+// Project information is stored in an array so the same
+// project-card layout can display multiple projects.
 const projects = [
   {
     title: 'Database Development Project',

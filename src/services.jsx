@@ -3,6 +3,8 @@ import linuxProject from './assets/project-linux.png';
 import requirementsProject from './assets/project-requirements.png';
 import webProject from './assets/project-web.png';
 
+// Service information is kept in an array so each service
+// can be displayed using the same reusable card structure.
 const services = [
   {
     title: 'Web Development',
