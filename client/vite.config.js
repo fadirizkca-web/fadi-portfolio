@@ -5,6 +5,6 @@ export default defineConfig(({ command }) => ({
   plugins: [react()],
 
   base: command === 'build'
-    ? '/fadi-portfolio/'
+    ? '/'
     : '/'
 }));
