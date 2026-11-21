@@ -16,6 +16,7 @@ app.use(helmet());
 const allowedOrigins = [
   "http://localhost:5173",
   "https://fadi-portfolio-one.vercel.app",
+  "https://fadi-portfolio-n7ag1esyp-fadirizkca-web.vercel.app",
 ];
 
 app.use(cors({
