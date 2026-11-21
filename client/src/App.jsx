@@ -1,11 +1,15 @@
-import { HashRouter as Router } from 'react-router-dom';
-import MainRouter from './MainRouter';
+
+import { HashRouter as Router } from "react-router-dom";
+import MainRouter from "./MainRouter";
+import { AuthProvider } from "./AuthContext";
 
 function App() {
   return (
-    <Router>
-      <MainRouter />
-    </Router>
+    <AuthProvider>
+      <Router>
+        <MainRouter />
+      </Router>
+    </AuthProvider>
   );
 }
 

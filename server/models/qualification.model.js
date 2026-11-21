@@ -1,34 +1,66 @@
+
 import mongoose from "mongoose";
 
 const qualificationSchema = new mongoose.Schema({
+  // Education or professional qualification.
+  qualification: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+
+  institution: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+
+  period: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+
+  details: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+
+  category: {
+    type: String,
+    enum: ["education", "professional-development"],
+    default: "education",
+  },
+
+  // Legacy fields retained for compatibility with older records.
   title: {
     type: String,
-    required: true,
     trim: true,
   },
+
   firstname: {
     type: String,
-    required: true,
     trim: true,
   },
+
   lastname: {
     type: String,
-    required: true,
     trim: true,
   },
+
   email: {
     type: String,
-    required: true,
     trim: true,
     lowercase: true,
   },
+
   completion: {
     type: Date,
-    required: true,
   },
+
   description: {
     type: String,
-    required: true,
     trim: true,
   },
 });

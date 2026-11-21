@@ -1,9 +1,12 @@
+import apiRequest from "./api";
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Contact() {
 
   const navigate = useNavigate();
+  const [error, setError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -24,41 +27,36 @@ function Contact() {
 
   }
 
-  async function handleSubmit(event) {
-  event.preventDefault();
 
-  try {
-    const response = await fetch(
-      "http://localhost:3000/api/contacts",
-      {
+  async function handleSubmit(event) {
+    event.preventDefault();
+
+    setError("");
+    setSubmitting(true);
+
+    try {
+      await apiRequest("/api/contacts", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
         body: JSON.stringify({
           firstname: formData.firstName,
           lastname: formData.lastName,
+          contactNumber: formData.contactNumber,
           email: formData.emailAddress,
+          message: formData.message,
         }),
-      }
-    );
+      });
 
-    const result = await response.json();
-
-    if (!response.ok) {
-      throw new Error(result.error || "Could not submit the contact.");
+      navigate("/", {
+        state: {
+          messageSubmitted: true,
+        },
+      });
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setSubmitting(false);
     }
-
-    // Show confirmation only after the backend saves the contact.
-    navigate("/", {
-      state: {
-        messageSubmitted: true,
-      },
-    });
-  } catch (error) {
-    alert(error.message);
   }
-}
 
   return (
     <main>
@@ -88,6 +86,7 @@ function Contact() {
             <h2>
               Contact Information
             </h2>
+
 
             <div className="contact-item">
               <strong>Email</strong>
@@ -133,6 +132,10 @@ function Contact() {
             <h2>
               Send a Message
             </h2>
+            {error && (
+              <p className="error-message" role="alert">
+                {error}
+              </p>)}
 
             <div className="form-row">
 
@@ -226,8 +229,9 @@ function Contact() {
             <button
               type="submit"
               className="button primary-button"
+              disabled={submitting}
             >
-              Send Message
+              {submitting ? "Sending..." : "Send Message"}
             </button>
 
           </form>

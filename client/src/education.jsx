@@ -1,117 +1,117 @@
-const educationRecords = [
-  {
-    year: 'January 2026 – Present',
-    qualification: 'Software Engineering Technology',
-    institution: 'Centennial College — Toronto, Ontario',
-    details:
-      'Expected graduation July 2028. GPA: 4.0. Key courses include Software Engineering Requirements, Unix/Linux Operating Systems, Programming 1 (Python), Web Interface Design, Software Engineering Fundamentals and Introduction to Database Concepts.'
-  },
 
-  {
-    year: 'July 2009 – July 2013',
-    qualification: 'Bachelor of Computer Science',
-    institution: 'Lebanese International University — Beirut, Lebanon',
-    details:
-      'Bachelor’s degree in Computer Science providing a strong foundation in programming, algorithms, databases and software development.'
-  }
-];
+import { useEffect, useState } from "react";
+import apiRequest from "./api";
 
 function Education() {
+  const [records, setRecords] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const loadQualifications = async () => {
+      try {
+        const data = await apiRequest("/api/qualifications");
+
+        if (!Array.isArray(data)) {
+          throw new Error("The server returned an invalid qualifications response.");
+        }
+
+        setRecords(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadQualifications();
+  }, []);
+
+  const educationRecords = records.filter(
+    (record) => record.category === "education"
+  );
+
+  const professionalRecords = records.filter(
+    (record) => record.category === "professional-development"
+  );
 
   return (
     <main>
-
       <section className="page-banner">
-
         <div className="container">
+          <p className="eyebrow">EDUCATION</p>
 
-          <p className="eyebrow">
-            EDUCATION
-          </p>
-
-          <h1>
-            Education & Qualifications
-          </h1>
-
+          <h1>Education & Qualifications</h1>
         </div>
-
       </section>
 
       <section className="section">
-
         <div className="container">
+          {loading && <p>Loading education records...</p>}
 
-          <div className="timeline">
+          {error && (
+            <p className="error-message" role="alert">
+              Unable to load education records: {error}
+            </p>
+          )}
 
-            {educationRecords.map((record) => (
+          {!loading && !error && (
+            <>
+              {educationRecords.length > 0 ? (
+                <div className="timeline">
+                  {educationRecords.map((record) => (
+                    <article
+                      className="timeline-item"
+                      key={record._id}
+                    >
+                      <div className="timeline-date">
+                        {record.period}
+                      </div>
 
+                      <div className="timeline-content">
+                        <h2>{record.qualification}</h2>
+
+                        <h3>{record.institution}</h3>
+
+                        <p>{record.details}</p>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              ) : (
+                <p>No education records are currently available.</p>
+              )}
+            </>
+          )}
+        </div>
+      </section>
+
+      {professionalRecords.length > 0 && (
+        <section className="section">
+          <div className="container">
+            <div className="section-heading">
+              <p className="eyebrow">PROFESSIONAL DEVELOPMENT</p>
+
+              <h2>Continuing Education</h2>
+            </div>
+
+            {professionalRecords.map((record) => (
               <article
-                className="timeline-item"
-                key={`${record.year}-${record.qualification}`}
+                className="info-card"
+                key={record._id}
               >
+                <h3>{record.qualification}</h3>
 
-                <div className="timeline-date">
-                  {record.year}
-                </div>
+                <p>{record.institution}</p>
 
-                <div className="timeline-content">
+                <p>{record.period}</p>
 
-                  <h2>
-                    {record.qualification}
-                  </h2>
-
-                  <h3>
-                    {record.institution}
-                  </h3>
-
-                  <p>
-                    {record.details}
-                  </p>
-
-                </div>
-
+                <p>{record.details}</p>
               </article>
-
             ))}
-
           </div>
-
-        </div>
-
-      </section>
-
-      <section className="section">
-
-        <div className="container">
-
-          <div className="section-heading">
-
-            <p className="eyebrow">
-              PROFESSIONAL DEVELOPMENT
-            </p>
-
-            <h2>
-              Continuing Education
-            </h2>
-
-          </div>
-
-          <article className="info-card">
-
-            <h3>
-              AWS Cloud Practitioner Essentials
-            </h3>
-
-            <p>
-              AWS Skill Builder — In Progress
-            </p>
-
-          </article>
-
-        </div>
-
-      </section>
-
+        </section>
+      )}
     </main>
   );
 }
