@@ -1,13 +1,14 @@
+
 import app from "./server/express.js";
 import mongoose from "mongoose";
 import config from "./config/config.js";
 
 if (!config.mongoUri) {
-  throw new Error("MONGODB_URI is missing from the .env file.");
+  throw new Error("MONGODB_URI environment variable is missing.");
 }
 
 if (!config.jwtSecret) {
-  throw new Error("JWT_SECRET is missing from the .env file.");
+  throw new Error("JWT_SECRET environment variable is missing.");
 }
 
 const startServer = async () => {
@@ -24,7 +25,7 @@ const startServer = async () => {
       });
     });
 
-    app.listen(config.port, () => {
+    app.listen(config.port, "0.0.0.0", () => {
       console.log(`Server started on port ${config.port}.`);
     });
   } catch (error) {
